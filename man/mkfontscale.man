@@ -1,6 +1,6 @@
 .\" $XFree86: xc/programs/mkfontscale/mkfontscale.man,v 1.4 2003/06/20 15:49:52 eich Exp $
 .\"
-.TH MKFONTSCALE __appmansuffix__ __vendorversion__
+.TH MKFONTSCALE __appmansuffix__ __xorgversion__
 .SH NAME
 mkfontscale \- create an index of scalable font files for X
 .SH SYNOPSIS
