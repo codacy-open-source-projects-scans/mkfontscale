@@ -1,4 +1,3 @@
-.\" $XFree86: xc/programs/mkfontscale/mkfontscale.man,v 1.4 2003/06/20 15:49:52 eich Exp $
 .\"
 .TH MKFONTSCALE __appmansuffix__ __xorgversion__
 .SH NAME
@@ -146,7 +145,6 @@ end of options.
 .BR X (__miscmansuffix__),
 .BR Xserver (__appmansuffix__),
 .BR mkfontdir (__appmansuffix__),
-.BR ttmkfdir (__appmansuffix__),
 .BR xfs (__appmansuffix__),
 .BR xset (__appmansuffix__)
 .SH NOTES
