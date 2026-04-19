@@ -25,7 +25,7 @@
 project(
   'mkfontscale',
   'c',
-  version: '1.2.3',
+  version: '1.2.4',
   license: 'MIT AND MIT-open-group AND HPND-sell-variant',
   license_files: 'COPYING',
   meson_version: '>= 1.1.0',
