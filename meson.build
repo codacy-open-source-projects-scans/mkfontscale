@@ -39,12 +39,13 @@ cc = meson.get_compiler('c')
 
 # Replaces AC_USE_SYSTEM_EXTENSIONS
 if host_machine.system() == 'sunos'
-    add_project_arguments('-D__EXTENSIONS__', language: ['c'])
+    system_extensions = '-D__EXTENSIONS__'
 elif host_machine.system() == 'netbsd'
-    add_project_arguments('-D_OPENBSD_SOURCE', language: ['c'])
+    system_extensions = '-D_OPENBSD_SOURCE'
 else
-    add_project_arguments('-D_GNU_SOURCE', language: ['c'])
+    system_extensions = '-D_GNU_SOURCE'
 endif
+add_project_arguments(system_extensions, language: ['c'])
 
 # Replacement for XORG_DEFAULT_OPTIONS
 if cc.has_argument('-fno-strict-aliasing')
@@ -52,7 +53,9 @@ if cc.has_argument('-fno-strict-aliasing')
 endif
 
 # Checks for system functions / libraries
-conf.set('HAVE_VASPRINTF', cc.has_function('vasprintf') ? '1' : false)
+conf.set('HAVE_VASPRINTF',
+         cc.has_function('vasprintf', args: system_extensions,
+                         prefix: '#include <stdio.h>') ? '1' : false)
 
 # Checks for pkg-config packages
 dep_fontenc  = dependency('fontenc', required: true)
