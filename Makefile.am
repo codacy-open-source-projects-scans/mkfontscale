@@ -66,4 +66,6 @@ lint:
 	$(LINT) $(ALL_LINT_FLAGS) $(mkfontscale_SOURCES)
 endif LINT
 
-EXTRA_DIST += README.md meson.build meson.options
+EXTRA_DIST += README.md meson.build meson.options \
+	test/conftest.py \
+	test/test_pcf_oob_read.py

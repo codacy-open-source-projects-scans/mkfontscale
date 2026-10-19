@@ -312,7 +312,7 @@ pcfIdentify(fontFile *f, char **name)
     string_size = getInt32(f, format);
     if (string_size < 0 || string_size > 100000)
         goto fail;
-    strings = malloc(string_size);
+    strings = calloc(1, (size_t)string_size + 1);
     if (!strings)
         goto fail;
 
@@ -321,10 +321,15 @@ pcfIdentify(fontFile *f, char **name)
         goto fail;
 
     for (i = 0; i < nprops; i++) {
+        unsigned max_len;
+
         if (!props[i].isString ||
-            props[i].name >= string_size - 4 || props[i].value >= string_size)
+            props[i].name >= (unsigned)string_size ||
+            props[i].value >= (unsigned)string_size)
             continue;
-        if (strcmp(strings + props[i].name, "FONT") == 0)
+        max_len = string_size - props[i].name;
+        if (max_len > 4 &&
+            strncmp(strings + props[i].name, "FONT", max_len) == 0)
             break;
     }
 

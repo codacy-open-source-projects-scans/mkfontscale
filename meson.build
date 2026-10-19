@@ -110,6 +110,18 @@ executable(
   install: true
 )
 
+pytest = find_program('pytest', required: false)
+if pytest.found()
+  mkfontscale_exe = meson.project_build_root() / 'mkfontscale'
+  test(
+    'pytest',
+    pytest,
+    args: [meson.project_source_root() / 'test'],
+    env: {'MKFONTSCALE': mkfontscale_exe},
+    timeout: 60,
+  )
+endif
+
 # Man pages
 prog_sed = find_program('sed')
 foreach p : ['mkfontdir', 'mkfontscale']
